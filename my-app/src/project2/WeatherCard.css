@@ -1,0 +1,15 @@
+/* Same CSS you already have – just save it as WeatherCard.css */
+.weather-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px 25px;
+  width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  color: #151515;
+}
+
+/* ... rest of the CSS exactly the same as I gave you earlier ... */
