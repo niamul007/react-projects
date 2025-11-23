@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import WeatherCard from "./WeatherCard";
@@ -22,11 +21,14 @@ export function Weather() {
         );
       });
   }, []);
-  console.log(weatherData);
+  {
+    !weatherData.location && <p>Loading weather data...</p>;
+  }
   return (
     <div className="container">
       <h1>Weather Component</h1>
-      <WeatherCard 
+
+      {/* <WeatherCard 
         city={weatherData.location.city}
         country={weatherData.location.country}
         localtime={weatherData.location.localtime}
@@ -37,7 +39,21 @@ export function Weather() {
         icon={weatherData.current.condition.icon}
         text={weatherData.current.condition.text}
 
-      />
+      /> */}
+      {/* // Render WeatherCard with optional chaining to avoid errors before data loads */}
+      {/* <WeatherCard
+        // city={weatherData.location?.city}
+        // country={weatherData.location?.country}
+        // localtime={weatherData.location?.localtime}
+        // temperature={weatherData.current?.temperature}
+        // feelslike={weatherData.current?.feels_like}
+        // humidity={weatherData.current?.humidity}
+        // wind={weatherData.current?.wind}
+        // icon={weatherData.current?.condition?.icon}
+        // text={weatherData.current?.condition?.text}
+      /> */}
+      {/* much cleaner way to write */}
+      <WeatherCard data ={weatherData}/>
     </div>
   );
 }
