@@ -1,17 +1,15 @@
 import React from "react";
 import "./WeatherCard.css"; // We'll keep CSS in a separate file (same as before)
 
-const WeatherCard = ({
-  city,
-  country,
-  localtime,
-  temperature,
-  feelslike,
-  humidity,
-  wind,
-  icon,
-  text,
-}) => {
+const WeatherCard = ({ data = {} }) => {
+  const location = data.location || {};
+  const current = data.current || {};
+  const condition = current.condition || {};
+
+  const { city, country, localtime } = location;
+  const { temperature, feels_like: feelslike, humidity, wind } = current;
+  const { icon, text } = condition;
+
   return (
     <div className="weather-card">
       <div className="location">
@@ -46,3 +44,4 @@ const WeatherCard = ({
 };
 
 export default WeatherCard;
+
