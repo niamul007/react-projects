@@ -3,7 +3,17 @@ import { useState } from "react";
 import WeatherCard from "./WeatherCard";
 export function Weather() {
   const [weatherData, setWeatherData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      loadWeather();
+    }, 500);
+  }, []);
+
+  function loadWeather() {
     fetch("data.json")
       .then((res) => {
         if (!res.ok) {
@@ -15,15 +25,16 @@ export function Weather() {
         setWeatherData(data);
       })
       .catch((error) => {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-  }, []);
-  {
-    !weatherData.location && <p>Loading weather data...</p>;
   }
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <div className="container">
       <h1>Weather Component</h1>
@@ -53,7 +64,7 @@ export function Weather() {
         // text={weatherData.current?.condition?.text}
       /> */}
       {/* much cleaner way to write */}
-      <WeatherCard data ={weatherData}/>
+      <WeatherCard data={weatherData} />
     </div>
   );
 }
