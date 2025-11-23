@@ -1,0 +1,40 @@
+{
+  "location": {
+    "city": "Dhaka",
+    "country": "Bangladesh",
+    "localtime": "2025-11-22 14:30"
+  },
+  "current": {
+    "temperature": 29,
+    "feels_like": 31,
+    "condition": {
+      "text": "Partly Cloudy",
+      "icon": "//cdn.weatherapi.com/weather/64x64/day/116.png"
+    },
+    "wind_kph": 12,
+    "humidity": 74,
+    "uv_index": 6
+  },
+  "forecast": {
+    "next_3_days": [
+      {
+        "date": "2025-11-23",
+        "max_temp": 30,
+        "min_temp": 22,
+        "condition": "Sunny"
+      },
+      {
+        "date": "2025-11-24",
+        "max_temp": 29,
+        "min_temp": 21,
+        "condition": "Cloudy"
+      },
+      {
+        "date": "2025-11-25",
+        "max_temp": 28,
+        "min_temp": 20,
+        "condition": "Rain"
+      }
+    ]
+  }
+}

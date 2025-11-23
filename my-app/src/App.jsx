@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import UserProfile from "./componenets/UserProfile.jsx";
 import { ProfileCard } from "./project-1/ProfileCard.jsx";
+import { Weather } from "./project2/Weather.jsx";
 function App() {
   // App.jsx
   const user = {
@@ -15,7 +16,8 @@ function App() {
 
   return (
     <>
-    {item}
+    {/* {item} */}
+    <Weather />
     </>
   );
 }
