@@ -3,6 +3,8 @@ import "./App.css";
 import UserProfile from "./componenets/UserProfile.jsx";
 import { ProfileCard } from "./project-1/ProfileCard.jsx";
 import { Weather } from "./project2/Weather.jsx";
+import BlogApp from "./project3/BlogApp.jsx";
+import Movie from "./project4/Movie.jsx";
 function App() {
   // App.jsx
   const user = {
@@ -17,7 +19,9 @@ function App() {
   return (
     <>
     {/* {item} */}
-    <Weather />
+    {/* <Weather /> */}
+    {/* <BlogApp /> */}
+    <Movie />
     </>
   );
 }
