@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "title": "Learning React",
+    "body": "React is a powerful library for building UI. You will learn props, state, and hooks."
+  },
+  {
+    "id": 2,
+    "title": "Why Practice Matters",
+    "body": "Muscle memory in coding comes from repetition. Build small projects to improve."
+  },
+  {
+    "id": 3,
+    "title": "Understanding useEffect",
+    "body": "useEffect allows you to run side effects like fetching data or updating the document title."
+  }
+]
