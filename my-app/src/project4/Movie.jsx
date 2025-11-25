@@ -9,36 +9,40 @@ export default function App() {
   const [query, setquery] = React.useState("");
 
   React.useEffect(() => {
+    let ismounted = true; 
     setLoading(true);
-    fetch("movie.json")
-      .then((res) => {
+    const movieApi = async () => {
+      try {
+        const res = await fetch("movie.json");
         if (!res.ok) {
           throw new Error("Failed to fetch");
         }
-        return res.json();
-      })
-      .then((data) => {
+        const data = await res.json();
         setMovie(data);
-        return;
-      })
-      .catch((err) => {
+      } catch (err) {
         setError(err.message);
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+      return;
+    };
+    movieApi();
+    return () => { ismounted = false; };
   }, []);
 
-
-    const filteredMovies = movie.filter((m)=>{
-        return m.title.toLowerCase().includes(query.toLowerCase());
-    });
+  const filteredMovies = movie.filter((m) => {
+    return m.title.toLowerCase().includes(query.toLowerCase());
+  });
 
   return (
     <div className="app-container">
       <h1>Movie Explorer</h1>
-      <SearchBar query ={query} setquery = {setquery} />
-      <MovieList  filteredMovies ={filteredMovies} loading={loading} error={error}/>
+      <SearchBar query={query} setquery={setquery} />
+      <MovieList
+        filteredMovies={filteredMovies}
+        loading={loading}
+        error={error}
+      />
     </div>
   );
 }
