@@ -5,6 +5,7 @@ import { ProfileCard } from "./project-1/ProfileCard.jsx";
 import { Weather } from "./project2/Weather.jsx";
 import BlogApp from "./project3/BlogApp.jsx";
 import Movie from "./project4/Movie.jsx";
+import UserApp from "./project5/UserApp.jsx";
 function App() {
   // App.jsx
   const user = {
@@ -21,7 +22,9 @@ function App() {
     {/* {item} */}
     {/* <Weather /> */}
     {/* <BlogApp /> */}
-    <Movie />
+    {/* <Movie /> */}
+    <UserApp/>
+    
     </>
   );
 }

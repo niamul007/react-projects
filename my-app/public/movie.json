@@ -1,0 +1,36 @@
+[
+
+  {
+    "id": 2,
+    "title": "The Dark Knight",
+    "genre": "Action",
+    "rating": 9.0,
+    "description": "Batman fights the Joker in Gotham City.",
+    "poster": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Interstellar",
+    "genre": "Adventure",
+    "rating": 8.6,
+    "description": "A team of explorers travel through a wormhole in space.",
+    "poster": "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+  },
+  {
+    "id": 4,
+    "title": "The Matrix",
+    "genre": "Sci-Fi",
+    "rating": 8.7,
+    "description": "A hacker discovers the true nature of his reality.",
+    "poster": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Avengers: Endgame",
+    "genre": "Action",
+    "rating": 8.4,
+    "description": "Superheroes team up to defeat Thanos.",
+    "poster": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+  }
+
+]
