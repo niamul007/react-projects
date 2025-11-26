@@ -1,33 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function CountryCard({ data }) {
-  const {
-    // Nested Destructuring
-    name: { common },
+const {
+        name: { common },
+        capital,
+        region,
+        population,
+        area,
+        subregion,
+        timezones,
+        cca2,
+        
+        // 🔑 FIX: Get the full currencies object (Do NOT try to destructure JPY here!)
+        currencies, 
+        
+        flags: { png: flagUrl },
+        languages,
+    } = data; // <-- Assuming 'country' is the object being destructured
+    // ... (inside the component function) ...
 
-    // Array Property
-    capital,
+// Destructuring block:
 
-    // Simple Properties
-    region,
-    population,
-    area,
-    subregion,
-    timezones,
-    cca2,
 
-    // Nested + Renaming (Currencies)
-    currencies: {
-      JPY: { name: currencyName },
-    },
+// 🎯 SIMPLE SOLUTION: Calculate the display string here
+let currencyDisplay = 'N/A';
 
-    // Nested + Renaming (Flags)
-    flags: { png: flagUrl },
-
-    // Languages is an Object, but you need an array or a specific language
-    // We'll destructure the object but handle the values separately.
-    languages,
-  } = data; // <-- Assuming 'country' is the object being destructured
+if (currencies) {
+    // Get the first currency code (e.g., 'CAD')
+    const currencyCodes = Object.keys(currencies);
+    
+    if (currencyCodes.length > 0) {
+        const firstCode = currencyCodes[0];
+        
+        // Use the code to access the specific currency object
+        const currencyObject = currencies[firstCode]; 
+        
+        // Build the final display string (Name and Symbol)
+        currencyDisplay = `${currencyObject.name} (${currencyObject.symbol})`;
+    }
+}
+// ...
 
   // ⚠️ Post-Destructuring Cleanup for Safe Access
 
@@ -37,6 +49,11 @@ export default function CountryCard({ data }) {
   // 2. Get the *first* value from the 'languages' object for display
   // (The API often returns language codes as keys, and names as values)
   const primaryLanguage = languages ? Object.values(languages)[0] : "N/A";
+
+  const [toggle,setToggle] = useState(false);
+  function handleClick(){
+    setToggle(prev=> !prev)
+  }
 
   return (
     <div className="country-card">
@@ -59,10 +76,10 @@ export default function CountryCard({ data }) {
         </p>
       </div>
 
-      <button className="country-btn">Show More</button>
+      <button className="country-btn" onClick={handleClick}>Show More</button>
 
       {/* Hidden section – you will toggle this with state */}
-      <div className="country-more-info">
+{  toggle &&    <div className="country-more-info">
         <h3>Additional Information</h3>
         <p>
           <strong>Subregion:</strong> {subregion}
@@ -77,12 +94,12 @@ export default function CountryCard({ data }) {
           <strong>Country Code:</strong> {cca2}
         </p>
         <p>
-          <strong>Currency:</strong>{currencyName}
+          <strong>Currency:</strong>{currencyDisplay}
         </p>
         <p>
           <strong>Maps:</strong> Google Maps & OpenStreetMap
         </p>
-      </div>
+      </div>}
     </div>
   );
 }
