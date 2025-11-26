@@ -5,41 +5,53 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function CountryApp() {
+  const [data, setData] = useState([]);
+  const [loading, SetLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [query, setQuery] = useState("");
 
-  useEffect(()=>{
+  const fetchData = async (name) => {
     let ismounted = true;
-    SetLoading(true)
-    const data =async ()=>{
-      try{
-              const res = await fetch("https://restcountries.com/v3.1/name/japan");
-      if(!res.ok){
-        throw new Error("Fetching Faild");
+    SetLoading(true);
+    try {
+      const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
+      if (!res.ok) {
+        // Attempt a partial search if full text fails
+        const partialRes = await fetch(
+          `https://restcountries.com/v3.1/name/${name}`
+        );
       }
       const data = await res.json();
-      setData(data)
+      setData(data);
       return;
-      }
-      catch(error){
-        console.error(error.message);
-      }
-      finally{
-        SetLoading(false)
-      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      SetLoading(false);
     }
-    data()
-    return ()=>{ismounted = false}
-},[])
+    return ()=> {ismounted = false}
+  };
 
-  const [data,setData] = useState();
-  const[loading,SetLoading] = useState(false);
-  const[error,setError] = useState(null);
+  useEffect(() => {
+    fetchData("japan");
+  }, []);
+
+  // 🔵 Called when user clicks Search button
+  const handleSearch = () => {
+    if (query.trim() === "") return;
+    fetchData(query);
+  };
+
+  // const filteredData = data?.filter(item =>
+  //   item.name.common.toLowerCase().includes(query.toLowerCase())
+  // ) || [];
 
   return (
     <div className="country-app">
       <h1 className="app-title">🌍 Country Explorer</h1>
-      <pre>{JSON.stringify(data,null,2)}</pre>
-      <SearchBar />
-      <CountryList data ={data} loading ={loading} error={error}/>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+      <CountryList filteredData={data} loading={loading} error={error} />
     </div>
   );
 }
