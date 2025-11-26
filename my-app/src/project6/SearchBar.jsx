@@ -1,13 +1,21 @@
 import React from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ query, setQuery, onSearch }) {
+  const handleSubmit = (e) => {
+    e.preventDefault(); // prevent page reload
+    onSearch();
+  };
+
   return (
-    <div className="search-container">
+    <form className="search-container" onSubmit={handleSubmit}>
       <input
         type="text"
         className="search-input"
         placeholder="Search country..."
+        value={query}
+        onChange={(e) => setQuery(e.currentTarget.value)}
       />
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 }
