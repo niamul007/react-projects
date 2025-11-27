@@ -15,7 +15,7 @@ export default function SearchBar({ query, setQuery, onSearch }) {
         value={query}
         onChange={(e) => setQuery(e.currentTarget.value)}
       />
-      <button type="submit">Search</button>
+      <button type="submit" className="country-btn">Search</button>
     </form>
   );
 }
