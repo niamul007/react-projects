@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import SearchBar from "./SearchBar";
 import CountryList from "./CountryList";
 import { useState } from "react";
