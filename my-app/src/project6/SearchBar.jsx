@@ -4,6 +4,7 @@ export default function SearchBar({ query, setQuery, onSearch }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
     onSearch();
+    setQuery("");
   };
 
   return (
@@ -15,7 +16,9 @@ export default function SearchBar({ query, setQuery, onSearch }) {
         value={query}
         onChange={(e) => setQuery(e.currentTarget.value)}
       />
-      <button type="submit" className="country-btn">Search</button>
+      <button type="submit" className="country-btn">
+        Search
+      </button>
     </form>
   );
 }
