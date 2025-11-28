@@ -7,6 +7,7 @@ import BlogApp from "./project3/BlogApp.jsx";
 import Movie from "./project4/Movie.jsx";
 import UserApp from "./project5/UserApp.jsx";
 import CountryApp from "./project6/CountryApp.jsx";
+import WeatherApp from "./project7/WeatherApp.jsx";
 function App() {
   // App.jsx
   const user = {
@@ -25,7 +26,9 @@ function App() {
     {/* <BlogApp /> */}
     {/* <Movie /> */}
     {/* <UserApp/> */}
-    <CountryApp/>
+    {/* <CountryApp/> */}
+    <WeatherApp/>
+
     
     </>
   );
