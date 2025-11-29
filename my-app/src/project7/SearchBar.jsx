@@ -4,7 +4,6 @@ export default function SearchBar({ query, setQuery, onSearch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch();
-    // Remember to implement the setQuery prop in WeatherApp!
     setQuery(""); 
   };
 
