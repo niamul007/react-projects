@@ -11,7 +11,7 @@ export default function WeatherApp() {
   //   - weatherData (the final object from the API)
   //   - loading 
   //   - error
-  const API_KEY = 'GB&appid=653f8950547083fe96d14f04426fe038';
+  const API_KEY = '653f8950547083fe96d14f04426fe038';
   const [data,setData] = useState([]);
   const [query,setQuery] = useState("");
   const [loading,setLoading] = useState(false);
@@ -21,7 +21,7 @@ export default function WeatherApp() {
     let ismounted = true;
     setLoading(true);
     try{
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name},${API_KEY}`);
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${API_KEY}`);
         if(!res.ok){
             throw new Error("Fetch isn't working");
         }
@@ -41,42 +41,12 @@ export default function WeatherApp() {
 
   useEffect(()=>{
     fetchData("london");
-  },[])
+  },[]);
 
-  // --- MOCK DATA FOR STRUCTURE (REPLACE THIS WITH YOUR STATE) ---
-//   const query = ""; 
-//   const location = "London";
-//   const loading = false;
-//   const error = null;
-  
-  // Placeholder functions for now
-//   const setQuery = () => {}; 
-//   const handleSearch = () => { console.log("Search triggered, implement fetchData next."); };
-  
-//   const mockCurrentWeather = {
-//     city: location,
-//     temp: 283.15, // Kelvin (You must convert this!)
-//     description: "light rain",
-//     icon: "10d",
-//     humidity: 78,
-//     windSpeed: 4.12,
-//     date: Date.now(),
-//   };
-//   const mockForecast = [
-//     { day: "Today", temp: 283.15, icon: "10d" },
-//     { day: "Tomorrow", temp: 285.55, icon: "01d" },
-//     { day: "Sun", temp: 280.99, icon: "04d" },
-//     { day: "Mon", temp: 288.01, icon: "02d" },
-//     { day: "Tue", temp: 286.75, icon: "03d" },
-//   ];
-  // -----------------------------------------------------------------
-
-
-  // TODO 2: Implement the core logic functions:
-  //   - async function fetchData(city)
-  //   - useEffect for initial fetch (London)
-  //   - useEffect to handle external changes (like geolocation)
-
+  function handleSearch(){
+    if(query.trim() === "") return ;
+    fetchData(query)
+  }
 
   return (
     <div className="weather-app">
@@ -85,7 +55,7 @@ export default function WeatherApp() {
       </h1>
       
       {/* Pass your actual state setters/getters here */}
-      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+      <SearchBar query={query} setQuery={setQuery}  onSearch ={handleSearch}/>
 
       {/* Use your actual state variables (loading, error) for conditional rendering */}
       {loading && <p className="status-text">Loading weather...</p>}
@@ -95,7 +65,7 @@ export default function WeatherApp() {
         <div className="weather-display">
           {/* Pass your actual weatherData here */}
           <CurrentWeatherCard data={data} /> 
-          <ForecastList forecast={data} />
+          {/* <ForecastList forecast={data} /> */}
         </div>
       )}
     </div>
