@@ -1,37 +1,23 @@
 import React from "react";
 
-// Helper function for K to C conversion
-const convertKelvinToCelsius = (kelvin) => {
-  if (typeof kelvin === 'number') {
-    return (kelvin - 273.15).toFixed(1);
-  }
-  return null;
-};
+// NOTE: We don't need convertKelvinToCelsius inside the card anymore, 
+// because the data is already converted and rounded in the fetchData function!
 
 export default function CurrentWeatherCard({ data }) {
-  // CORRECTED DESTRUCTURING FOR RAW API RESPONSE
+  // 1. Destructure the CLEAN, FLAT properties from the 'current' object
   const {
-    name,       // City name is at top level
-    main,       // Contains temp, feels_like, humidity
-    weather,    // Array containing description and icon
-    wind,       // Contains wind speed
-    dt          // The timestamp
+    location,       // Corresponds to 'name'
+    description,    // Already a string
+    temp,           // Already a string like "11.2"
+    feelsLike,      // Already a string like "10.5"
+    humidity,
+    windSpeed,
+    icon,
+    dt,
   } = data;
 
-  // Further access nested properties
-  const temp = main?.temp;
-  const feelsLike = main?.feels_like;
-  const humidity = main?.humidity;
-  const description = weather?.[0]?.description;
-  const icon = weather?.[0]?.icon;
-  const windSpeed = wind?.speed;
 
-
-  // Perform Conversion
-  const tempCelsius = convertKelvinToCelsius(temp);
-  const feelsLikeCelsius = convertKelvinToCelsius(feelsLike); 
-  
-  // Format Time
+  // 2. We only need to format the time and parse temperatures for display
   const formattedTime = new Date(dt * 1000).toLocaleTimeString('en-US', {
     hour: '2-digit', 
     minute: '2-digit'
@@ -40,7 +26,8 @@ export default function CurrentWeatherCard({ data }) {
   return (
     <div className="current-weather-card">
       <div className="card-header">
-        <h2 className="city-name">{name}</h2> {/* Use 'name' from the raw data */}
+        {/* Use 'location' from the cleaned data */}
+        <h2 className="city-name">{location}</h2> 
         <p className="date-time">Today, {formattedTime}</p>
       </div>
       
@@ -52,7 +39,8 @@ export default function CurrentWeatherCard({ data }) {
             className="weather-icon"
           />
           <span className="current-temp">
-            {Math.round(tempCelsius)}°C 
+            {/* Convert the cleaned string back to a number for Math.round() */}
+            {Math.round(parseFloat(temp))}°C 
           </span>
         </div>
         <p className="description">{description}</p>
@@ -60,7 +48,7 @@ export default function CurrentWeatherCard({ data }) {
 
       <div className="details">
         <div className="detail-item">
-          <strong>Feels Like:</strong> {Math.round(feelsLikeCelsius)}°C
+          <strong>Feels Like:</strong> {Math.round(parseFloat(feelsLike))}°C
         </div>
         <div className="detail-item">
           <strong>Humidity:</strong> {humidity}%
