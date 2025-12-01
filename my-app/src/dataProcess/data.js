@@ -35,3 +35,10 @@ const RAW_FORECAST_DATA = {
   ]
 };
 export default RAW_FORECAST_DATA;
+
+// Day 2: The Uniqueness Problem
+// Goal: Identify the unique dates in the forecast.
+
+// Task: Use the dt_txt string and the JavaScript Set data structure to create a set containing the unique YYYY-MM-DD date strings. Ignore the time part.
+
+// Output: A Set containing 6 unique dates (Today's date + 5 forecast dates).
