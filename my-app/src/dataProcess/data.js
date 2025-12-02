@@ -39,6 +39,19 @@ export default RAW_FORECAST_DATA;
 // Day 2: The Uniqueness Problem
 // Goal: Identify the unique dates in the forecast.
 
-// Task: Use the dt_txt string and the JavaScript Set data structure to create a set containing the unique YYYY-MM-DD date strings. Ignore the time part.
+// Task: Use the dt_txt string and the JavaScript Set data structure to
+//  create a set containing the unique YYYY-MM-DD date strings. Ignore the time part.
 
 // Output: A Set containing 6 unique dates (Today's date + 5 forecast dates).
+
+// Day 3: Exclusion (Ignoring Today)
+// Goal: Filter out all forecast entries for the
+//  current date (Simulate using the first few items).
+
+// Task: Use the new Date().toDateString() method to get the
+//  current date string (e.g., "Mon Dec 01 2025"). Loop through
+//  the list and create an array containing only the entries
+// that do not belong to the current date.
+
+// Output: An array of the last 30+ items
+//  (all items except those from the first day).
