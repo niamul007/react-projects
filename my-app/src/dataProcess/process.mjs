@@ -15,4 +15,26 @@ const mapping = ORDER_DATA.map((item)=>{
 const totalRevinue = mapping.filter((item)=> item.total).reduce((acc,curr)=> {
     return acc + curr.total;
 },0)
-console.log(totalRevinue)
+console.log(totalRevinue);
+
+const uniqueDates = new Set();
+
+ORDER_DATA.map((item)=>{
+    const date = item.date;
+    uniqueDates.add(date)
+    return date;
+})
+// console.log(uniqueDates);
+
+const join = USER_DATA.concat(ORDER_DATA);
+console.log(join.length);
+// Create a Map for fast lookup
+const userMap = new Map(USER_DATA.map((item) => [item.userId, item.name]));
+
+// Replace userId with name in orders
+const joinedOrders = ORDER_DATA.map((order) => ({
+  ...order,
+  userId: userMap.get(order.userId) || "Unknown User"
+}));
+
+console.log(joinedOrders);
