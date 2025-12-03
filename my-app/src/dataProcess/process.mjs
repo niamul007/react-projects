@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { USER_DATA,ORDER_DATA } from "./data1.js";
 
 const filterStatus = ORDER_DATA.filter((item)=> item.status === "completed").map((item)=> item);
@@ -26,10 +27,8 @@ ORDER_DATA.map((item)=>{
 })
 // console.log(uniqueDates);
 
-const join = USER_DATA.concat(ORDER_DATA);
-console.log(join.length);
 // Create a Map for fast lookup
-const userMap = new Map(USER_DATA.map((item) => [item.userId, item.name]));
+const userMap = new Map(USER_DATA.map((item) => [item.userId, item.name,item.region]));
 
 // Replace userId with name in orders
 const joinedOrders = ORDER_DATA.map((order) => ({
@@ -50,3 +49,26 @@ const orderPlaced = joinedOrders.reduce((acc,curr)=>{
 },{})
 
 console.log(orderPlaced);
+
+const status = ORDER_DATA.reduce((acc,curr)=>{
+    const orderStatus = curr.status;
+    acc[orderStatus] = (acc[orderStatus] || 0) + 1;
+    return acc;
+
+},{})
+
+console.log(status);
+
+const heights = ORDER_DATA.reduce((acc,curr)=>{
+    return curr.total> acc ? curr.total : acc
+},0);
+
+console.log(heights)
+
+const userRegion = USER_DATA.filter(item=> item.region === "North").map(user=> user.userId);
+console.log(userRegion)
+const revinew = ORDER_DATA.filter(item=> userRegion.includes(item.userId)).reduce((acc,curr)=>{
+    return acc += curr.total;
+},0)
+
+console.log(revinew)
