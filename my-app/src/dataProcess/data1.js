@@ -33,7 +33,7 @@ export { USER_DATA, ORDER_DATA };
 //        Linking (Joining)Create a list of all orders, but replace the userId 
 //        with the name of the user.Use a Map for fast lookup of users, then
 //         loop through ORDER_DATA.
-// Day 6Grouping & AggregationCalculate the
+// Day 6 Grouping & AggregationCalculate the
 //          total number of orders placed by each user (Alice J., Bob K., etc.).
 //          Use the reduce() method to build a final object where keys are names
 //           and values are the count.
