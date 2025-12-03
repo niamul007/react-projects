@@ -37,4 +37,16 @@ const joinedOrders = ORDER_DATA.map((order) => ({
   userId: userMap.get(order.userId) || "Unknown User"
 }));
 
-console.log(joinedOrders);
+// console.log(joinedOrders);
+
+const orderPlaced = joinedOrders.reduce((acc,curr)=>{
+    const userName = curr.userId;
+    if(acc[userName]){
+        acc[userName] += 1;
+    }else{
+        acc[userName] = 1
+    }
+    return acc;
+},{})
+
+console.log(orderPlaced);
