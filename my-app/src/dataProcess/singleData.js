@@ -54,3 +54,5 @@ const EMPLOYEE_DATA = [
     contact: { email: "fiona@comp.com", phone: "555-1122" }
   }
 ];
+
+export default EMPLOYEE_DATA;
